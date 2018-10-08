@@ -3,12 +3,14 @@ language: go
 go:
   - "1.10.x"
   - master
-  
+
 before_install:
   - go get -t -v ./...
+  - go get github.com/mattn/goveralls
 
 script:
   - go test -race -coverprofile=coverage.txt -covermode=atomic
+  - $HOME/gopath/bin/goveralls -v -service=travis-ci
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
