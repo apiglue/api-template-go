@@ -6,6 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func main() {
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	router := SetupRouter()
+	router.Run(":" + port)
+}
+
 // SetupRouter -
 func SetupRouter() *gin.Engine {
 	router := gin.Default()
@@ -21,15 +32,4 @@ func SetupRouter() *gin.Engine {
 // GetHealthCheck - heartbeat endpoint
 func GetHealthCheck(c *gin.Context) {
 	c.JSON(200, gin.H{"ok": "healthy!"})
-}
-
-func main() {
-
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
-
-	router := SetupRouter()
-	router.Run(":" + port)
 }
