@@ -15,7 +15,7 @@ func TestGetHealthCheck(t *testing.T) {
 
 	body := bytes.NewBuffer([]byte(""))
 
-	req, err := http.NewRequest("GET", "/api/v1/health", body)
+	req, err := http.NewRequest("GET", "/api/health", body)
 	if err != nil {
 		t.Errorf("Get heartbeat failed with error %d.", err)
 	}
