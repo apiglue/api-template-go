@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"testing"
 
 	"github.com/gin-gonic/gin"
@@ -28,8 +27,8 @@ func TestGetHealthCheck(t *testing.T) {
 	}
 }
 
-func TestMain(m *testing.M) {
-	go func() {
-		os.Exit(m.Run())
-	}()
-}
+// func TestMain(m *testing.M) {
+// 	go func() {
+// 		os.Exit(m.Run())
+// 	}()
+// }
