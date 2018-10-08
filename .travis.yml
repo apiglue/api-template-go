@@ -4,16 +4,13 @@ go:
   - master
 
 before_install:
-#codecov.io
-#  - go get -t -v ./...
+  - go get -t -v ./...
   - go get github.com/mattn/goveralls
 
 script:
-#codecov.io
-#  - go test -race -coverprofile=coverage.txt -covermode=atomic
+  - go test -race -coverprofile=coverage.txt -covermode=atomic
   - go test -v -covermode=count -coverprofile=coverage.out
   - $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
 
-#codecov.io
-#after_success:
-#  - bash <(curl -s https://codecov.io/bash)
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
