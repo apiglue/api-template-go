@@ -1,6 +1,9 @@
 package main
 
 import (
+	"os"
+	"strconv"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,9 +18,9 @@ func SetupRouter() *gin.Engine {
 
 	router := gin.Default()
 
-	v1 := router.Group("api/")
+	v1 := router.Group("/")
 	{
-		v1.GET("/heartbeat", GetHealthCheck)
+		v1.GET("/health", GetHealthCheck)
 	}
 
 	return router
@@ -25,5 +28,11 @@ func SetupRouter() *gin.Engine {
 
 // GetHealthCheck - heartbeat endpoint
 func GetHealthCheck(c *gin.Context) {
-	c.JSON(200, gin.H{"ok": "healthy!"})
+
+	content := gin.H{
+		"id":          strconv.Itoa(os.Getpid()),
+		"description": "PID says hello!",
+	}
+
+	c.JSON(200, content)
 }
